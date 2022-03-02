@@ -1,7 +1,9 @@
 const mongodb = require('mongodb')
-const MongoClient = mongodb.MongoClient
+const MongoClient = mongodb.MongoClient;
+const ObjectID = mongodb.ObjectId;
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const database = 'userdb'
+const id= new ObjectID();
 MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client)=> {
  if (error) {
  return console.log('Unable to connect to database!')
@@ -37,13 +39,11 @@ db.collection('usercol').find({Firstname:'Gudiya'}).toArray((error, usercol) =>{
     console.log(usercol)
 });
 
-/*
 //using findOne to finde a single document by its ID.
-db.collection('usercol').findOne({ _id: new
-    ObjectID("621e2d3e32c07b4a50eb9e2c") }, (error, usercol) => {
+db.collection('usercol').findOne({ _id: new  ObjectID("621e360a6455c1444b18aad3") }, (error, usercol) => {
      console.log(usercol)
     })
-*/
+    
 
 const doWorkPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -81,6 +81,7 @@ var query = { Firstname: "ABC" };
    }).catch((error) => {
     console.log(error)
    })
+
   /*db.collection('usercol').updateMany({
     Firstname: ABC
     }, {
